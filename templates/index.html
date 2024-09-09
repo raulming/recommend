@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>衣服尺寸推荐</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">衣服尺寸推荐</h2>
+                        <form action="/recommend" method="post" id="recommendForm">
+                            <div class="mb-3">
+                                <label for="gender" class="form-label">性别</label>
+                                <select class="form-select" id="gender" name="gender" required>
+                                    <option value="">请选择</option>
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="age" class="form-label">年龄</label>
+                                <input type="number" class="form-control" id="age" name="age" required min="1" max="120">
+                            </div>
+                            <div class="mb-3">
+                                <label for="height" class="form-label">身高 (cm)</label>
+                                <input type="number" class="form-control" id="height" name="height" required min="50" max="250">
+                            </div>
+                            <div class="mb-3">
+                                <label for="weight" class="form-label">体重 (kg)</label>
+                                <input type="number" class="form-control" id="weight" name="weight" required min="20" max="300">
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">推荐</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入 Bootstrap JS 和 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    
+    <script>
+    document.getElementById('recommendForm').addEventListener('submit', function(event) {
+        var age = document.getElementById('age').value;
+        var height = document.getElementById('height').value;
+        var weight = document.getElementById('weight').value;
+
+        if (age < 1 || age > 120) {
+            alert('请输入有效的年龄（1-120岁）');
+            event.preventDefault();
+        } else if (height < 50 || height > 250) {
+            alert('请输入有效的身高（50-250厘米）');
+            event.preventDefault();
+        } else if (weight < 20 || weight > 300) {
+            alert('请输入有效的体重（20-300公斤）');
+            event.preventDefault();
+        }
+    });
+    </script>
+</body>
+</html>
